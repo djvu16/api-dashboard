@@ -1,0 +1,21 @@
+@import '../../scss/utility';
+.side-menu-bar{
+    top:6rem;
+    position:fixed;
+    height: 100%;
+    width:20%;
+    border-right: 1px solid black;
+    background-color: #252525;
+        .options{
+            display: flex;
+            flex-direction: column;
+            .option{
+                @extend %btn-shared;
+                border-bottom: 1px solid rgb(190, 184, 184);
+                text-align: center;
+                &:hover{
+                    background-color: rgb(8, 8, 8);
+                }
+            }
+        }
+}

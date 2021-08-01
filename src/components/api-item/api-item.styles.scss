@@ -1,0 +1,52 @@
+@import '../../scss/utility';
+.api-item{
+    .api-overview{
+        display: grid;
+        grid-template-areas: 'heading sub-heading sub-heading sub-heading-arrow'
+            'item-1 item-2 item-3 item-4';
+        margin:0.3rem;
+        padding: 0.4rem;
+        border-radius: .6rem;
+        border:#f4f4f4 1px solid;
+        .heading{
+            grid-area: heading;
+            font-weight: normal;
+        }
+        .sub-heading{
+            grid-area:sub-heading;
+            font-weight:normal;
+            font-size: 0.8rem;
+            padding-top: 0.5rem;
+        }
+        .arrow-down{
+            grid-area:sub-heading-arrow;
+        } 
+        .item-1{
+            grid-area: item-1;
+        }  
+        .item-2{
+            grid-area: item-2;
+        }  
+        .item-3{
+            grid-area: item-3;
+        }  
+        .item-4{
+            grid-area: item-4;
+        } 
+        &:hover{
+            background-color: rgb(51, 51, 51);
+            color: #ccc;
+        }
+        .api-cred{
+            margin-top: 1rem;
+            border:1px solid grey;
+            border-radius: 5%;
+            padding:2rem;
+            display: grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+        }
+        .hide-content{
+            @extend %hide-content;
+        }
+    }
+}

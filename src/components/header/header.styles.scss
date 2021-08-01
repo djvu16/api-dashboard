@@ -1,0 +1,61 @@
+@import '../../scss/utility';
+@mixin logo-container-mix {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0  1px solid black 1px solid black 0;
+}
+@mixin logo-img-mix {
+    height:6rem;
+    width: 6rem;
+    border-radius: 50%;
+}
+@mixin label-head-mix {
+    font-size: 1.6rem;
+}
+.header{
+    z-index: 2;
+    background: linear-gradient( 
+        45deg
+         ,rgba(254, 195, 67, 1) 20%,rgba(210, 147, 31, 1),rgba(213, 93, 43, 1),rgba(241, 142, 75, 1));
+    position: fixed;
+    top:0;
+    width: 100%;
+    height: 6rem;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .logo-container{
+        width: 20%;
+        background-color: lightblue;
+        @include logo-container-mix();
+        .pmjay-logo-img{
+            @include logo-img-mix();
+        }
+        .heading{
+           @include label-head-mix();
+        }
+    }
+    .logo-container-logout{
+        @include logo-container-mix();
+        .pmjay-logo-img{
+            @include logo-img-mix();
+        }
+        .heading{
+           @include label-head-mix();
+        }
+    }
+    .options{
+        .option{
+            @extend %btn-shared;
+            &:hover{
+                text-decoration: underline;  
+            }
+        }
+    }
+}
+
+
+

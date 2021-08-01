@@ -1,0 +1,10 @@
+@import '../../scss/utility';
+.custom-btn{
+    .btn{
+        @extend %btn-shared;
+        background-color: rgb(139, 214, 236);
+        &:hover{
+            background-color: rgba(76,201,240,1);
+        }
+    }
+}

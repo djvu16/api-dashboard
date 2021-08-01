@@ -1,0 +1,48 @@
+@import '../../scss/utility';
+@mixin block-style{
+    margin-bottom: 1rem;
+    padding: 2px;
+    border: #f4f4f4 solid 1px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #f4f4f4;
+}
+
+.api-detail{
+    
+    .container{   
+        margin: 6rem 1rem 0 21%;
+        .content-box{
+            margin-top: 7rem;
+            .name-div{
+            @include block-style();
+            .grid-box{
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+            }
+        }
+
+        .url-div{
+            @include block-style();
+            display: grid;
+            grid-template-columns: 20rem 10rem auto;
+        }
+        
+        .url-verify-div{
+            @include block-style();
+            .credentials{
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+        }
+        .reg-div{
+            @include block-style();
+            display: flex;
+            justify-content: space-between;
+            justify-items: flex-end;
+            .btn-container{
+                display: flex;
+            }
+        }}
+    }
+
+}
