@@ -12,9 +12,9 @@ const Header=({currentUser,setCurrentUser})=>{
     return(
         <div className="header">
             <div className={`logo-container${currentUser ? '' : '-logout'}`}>
-                    <img className="pmjay-logo-img" src={logo} alt="pmjay-logo" />
-                    <span className="heading">{currentUser ? 'API Dashboard':'Pradhan Mantri Jan Arogya Yojana'}</span>
-                </div>
+                    <img className="pmjay-logo-img" src={''} alt="logo" />
+                    <span className="heading">{currentUser ? 'Dashboard':'Dashboard'}</span>
+            </div>
             <div className="options">
                 <Link className="option" to="/">Home</Link>
                 {
