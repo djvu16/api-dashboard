@@ -25,19 +25,8 @@
     border-bottom: 1px solid black;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    .logo-container{
-        width: 20%;
-        background-color: lightblue;
-        @include logo-container-mix();
-        .pmjay-logo-img{
-            @include logo-img-mix();
-        }
-        .heading{
-           @include label-head-mix();
-        }
-    }
     .logo-container-logout{
         @include logo-container-mix();
         .pmjay-logo-img{
@@ -48,6 +37,7 @@
         }
     }
     .options{
+        display: flex;
         .option{
             @extend %btn-shared;
             &:hover{

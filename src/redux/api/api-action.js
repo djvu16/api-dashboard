@@ -19,3 +19,7 @@ export const searchByParams= searchParams =>({
     type:apiActionType.SEARCH_BY_PARAMS,
     payload:searchParams
 });
+
+export const setApiList = () => ({
+    type:apiActionType.SET_API_LIST
+})

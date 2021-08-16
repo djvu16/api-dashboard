@@ -11,12 +11,11 @@ import "./main-page.styles.scss";
 
 
 const MainPage=(props)=>{
-    const {API_DATA}=props;
+    const {apiOverviewDtls}=props;
+    const {count,apiDtls}=apiOverviewDtls; 
 
-    const apiList=API_DATA;
-
-    const totalNoOfApi = (apiList) =>{
-        return (apiList.length)
+    const totalNoOfApi = () =>{
+        return count;
     }
 
     const totalNoOfConsumer = (apiList) => {
@@ -29,7 +28,7 @@ const MainPage=(props)=>{
         return(consumerList.length);
         }
     
-    const totalNoOfProducer = () => {
+    const totalNoOfProducer = (apiList) => {
         const producerList=apiList.map(api => api.producer).reduce((previous,a)=>{
             if(!(previous.find(producer => producer===a))){
                 previous.push(a);
@@ -48,7 +47,7 @@ const MainPage=(props)=>{
                 />
                 <InputField
                     type="text"
-                    value={totalNoOfApi(apiList)}
+                    value={totalNoOfApi()}
                     readOnly
                 />
                 <CustomLabel 
@@ -56,7 +55,7 @@ const MainPage=(props)=>{
                 />
                 <InputField
                     type="text"
-                    value={totalNoOfProducer(apiList)}
+                    value={totalNoOfProducer(apiDtls)}
                     readOnly
                 />
                 <CustomLabel 
@@ -64,7 +63,7 @@ const MainPage=(props)=>{
                 />
                 <InputField
                     type="text"
-                    value={totalNoOfConsumer(apiList)}
+                    value={totalNoOfConsumer(apiDtls)}
                     readOnly
                 />
             </div>

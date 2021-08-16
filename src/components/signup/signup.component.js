@@ -6,10 +6,12 @@ import InputField from "../input-field/input-field.component";
 import CustomLabel from "../custom-label/custom-label.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import { userPostSignup } from '../../redux/action/user-action-api';
 //import styles
 import './signup.styles.scss';
 
 const Signup = (props) => {
+    console.log(props);
     const [user,setUser]=useState({
         username:'',
         password:'',
@@ -17,15 +19,30 @@ const Signup = (props) => {
     });
 
     const {username,password,confirmPass} = user;
+    
     const handleChange = event => {
         event.preventDefault();
         const {name,value}=event.target;
-        setUser({...user,[name]:value});
-        console.log(username,password,confirmPass);
+        setUser(
+            {...user,
+                [name]:value
+            });
     }
     const handleSubmit = event => {
         event.preventDefault();
-        
+        userPostSignup({
+            email:username,
+            password:password
+        })
+        .then(result=>{
+            console.log(result);
+            alert(result.message+" Redirecting to login page...");
+            return props.history.push('/signin');
+        })
+        .catch(err => {
+            console.log(err);
+            return alert(err);
+        })
     }
     const handleResetClick= event =>{
         event.preventDefault();

@@ -1,13 +1,15 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import CustomButton from '../custom-button/custom-button.component';
+import {connect} from 'react-redux';
 
 //import components
 import InputField from '../input-field/input-field.component';
 import CustomSpan from '../custom-span/custom-span.component';
+import CustomButton from '../custom-button/custom-button.component';
+import {userActionType} from '../../redux/actionType';
 
 //import validation api
-import { signinValidation } from '../../redux/action/action-api';
+import { signinValidation } from '../../redux/action/user-action-api';
  
 //import styles
 import './signin.styles.scss'
@@ -15,7 +17,7 @@ import './signin.styles.scss'
 const Signin = (props) => {
     const [userName,setUserName]=useState('');
     const [password,setPassword]=useState('');
-    const {currentUser,setCurrentUser}=props;
+    const {setCurrentUser}=props;
 
 
     useEffect(()=>{
@@ -50,16 +52,20 @@ const Signin = (props) => {
             return;
         }
         const user={
-            username:userName,
+            email:userName,
             password:password
         }
+       //user authentication being done here
         signinValidation(user)
-        .then(res=>{
-           console.log(res);
-            setCurrentUser(true);
+        .then(result=>{
+            setCurrentUser({
+                currentUser:result.email,
+                isAuthenticated:result.isAuthenticated
+            });
+            props.history.push("/");
         })
         .catch(err=>{
-            console.log(err);
+            alert(err);
         });
         
         setUserName('');
@@ -119,4 +125,17 @@ const Signin = (props) => {
     )
 }
 
-export default Signin;
+const mapStateToProps = (state) =>({
+    currentUser:state.currentUser
+});
+
+const mapDispatchToProps =( dispatch ) =>({
+    setCurrentUser:(user) =>{
+            dispatch({
+            type:userActionType.SET_CURRENT_USER,
+            payload:user
+        });
+    }
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Signin);

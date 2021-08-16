@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {connect} from 'react-redux';
-
+import {postSaveNewApi} from '../../redux/action/api-action-api'; 
 
 //import styles
 import "./api-detail.styles.scss";
@@ -37,6 +37,10 @@ class ApiDetailPage extends Component{
         }
     }
 
+    resetAllFields = (state) =>{
+        
+    }
+
     handleChange=(event)=>{
         event.preventDefault();
         const { name, value } = event.target;
@@ -49,25 +53,68 @@ class ApiDetailPage extends Component{
     handleSubmit=(event)=>{ 
         event.preventDefault();
         const apiItemDtls={
-                id:Math.floor(1000+Math.random()*9000),
-                apiName:this.state.apiName,
-                apiCName:this.state.apiCName,
-                backendIP:this.state.backendIP,
-                port:this.state.port,
-                backendEndPoint:this.state.backendEndPoint,
-                urlReWritingWith:this.state.urlReWritingWith,
-                fullBackendUrl:this.state.fullBackendUrl,
-                gatewayUrl:this.state.gatewayUrl,
-                consumer:this.state.consumer,
-                producer:this.state.producer,
-                state:this.state.state,
-                description:this.state.description,
-                clientId:this.state.clientId,
-                clientSecret:this.state.clientSecret,
-                isActive:this.state.isActive,
-                registeredBy:this.state.registeredBy
+            apiName:this.state.apiName,
+            apiCName:this.state.apiCName,
+            backendIP:this.state.backendIP,
+            port:this.state.port,
+            backendEndPoint:this.state.backendEndPoint,
+            urlReWritingWith:this.state.urlReWritingWith,
+            fullBackendUrl:this.state.fullBackendUrl,
+            gatewayUrl:this.state.gatewayUrl,
+            consumer:this.state.consumer,
+            producer:this.state.producer,
+            state:this.state.state,
+            description:this.state.description,
+            clientId:this.state.clientId,
+            clientSecret:this.state.clientSecret,
+            isActive:this.state.isActive,
+            registeredBy:this.state.registeredBy
         }
-        this.props.addApiToList(apiItemDtls);
+        /* this.props.addApiToList(apiItemDtls); */
+        postSaveNewApi(apiItemDtls)
+        .then(data=>{
+            console.log(data);
+            alert(data.message);
+            this.setState({
+                apiName:'',
+                apiCName:'',
+                backendIP:'',
+                port:'',
+                backendEndPoint:'',
+                urlReWritingWith:'',
+                fullBackendUrl:'',
+                gatewayUrl:'',
+                consumer:'',
+                producer:'',
+                state:'',
+                description:'',
+                clientId:'',
+                clientSecret:'',
+                isActive:'',
+                registeredBy:''
+            });
+        })
+        .catch(err=>{
+            alert(err);
+            this.setState({
+                apiName:'',
+                apiCName:'',
+                backendIP:'',
+                port:'',
+                backendEndPoint:'',
+                urlReWritingWith:'',
+                fullBackendUrl:'',
+                gatewayUrl:'',
+                consumer:'',
+                producer:'',
+                state:'',
+                description:'',
+                clientId:'',
+                clientSecret:'',
+                isActive:'',
+                registeredBy:''
+            });
+        });
     }
 
     render(){
@@ -242,9 +289,7 @@ class ApiDetailPage extends Component{
     }
 }
 
-const mapStateToProps =(state)=>({
 
-});
 const mapDispatchToProps = (dispatch) => ({
     addApiToList:(apiItemDtls) => {
         dispatch({
@@ -255,4 +300,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(ApiDetailPage);
+export default connect(null,mapDispatchToProps)(ApiDetailPage);

@@ -14,7 +14,7 @@ import './search-api-card.styles.scss';
 
 const SearchApiCard = (props) => {
     const {api}=props;
-    const [{apiName,apiCName,backendIP,port,backendEndPoint,urlReWritingWith,fullBackendUrl,gatewayUrl,consumer,producer,state,description,clientId,clientSecret,isActive,registeredBy}] = api;
+    const {apiName,apiCName,backendIP,port,backendEndPoint,urlReWritingWith,fullBackendUrl,gatewayUrl,consumer,producer,state,description,clientId,clientSecret,isActive,registeredBy} = api;
     return(
         <div className='search-api-card'>
             <div className="name-div">

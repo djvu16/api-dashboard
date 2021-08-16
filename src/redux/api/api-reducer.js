@@ -1,10 +1,11 @@
 import { apiActionType } from "../actionType";
 import {addApiToList,removeApiFromList,updateApi} from './api.util';
-import API_DATA from './api-data';
-
 
 const INITIAL_STATE={
-    apiList:API_DATA,
+    apiList:{
+        count:0,
+        apiDtls:[]
+    },
     searchByParams:{
         searchByApiName:'',
         searchByConsumer:'',
@@ -12,7 +13,7 @@ const INITIAL_STATE={
     }
 }
 
-const apiReducer=(state=INITIAL_STATE,action) => {
+const apiReducer = (state=INITIAL_STATE,action) => {
     switch(action.type){
         case apiActionType.ADD_API:
             return{
@@ -38,6 +39,15 @@ const apiReducer=(state=INITIAL_STATE,action) => {
                             searchByConsumer:action.payload.searchByConsumer,
                             searchByProducer:action.payload.searchByProducer
                     }
+            };
+        case apiActionType.SET_API_LIST:
+            return {
+                ...state,
+                apiList:{
+                    ...state.apiList,
+                    count:action.payload.count,
+                    apiDtls:action.payload.apiDtls
+                }
             };
         default:return state;
     }

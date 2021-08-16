@@ -16,15 +16,11 @@ import './search-api.styles.scss';
 
 class SearchApi extends Component{
 
-    
-    apiList=this.props.api.apiList;
-    
-
     handleChange = (event) =>{
         event.preventDefault();
         const {name,value}=event.target;
         const searchParams={
-            ...this.props.api.searchByParams,
+            ...this.props.searchByParams,
             [name]:value
         }
         this.props.setSearchParams(searchParams);
@@ -42,10 +38,11 @@ class SearchApi extends Component{
         event.preventDefault();
     }
     render(){
+        console.log(this.props);
         let filteredApis=[];
-        const { searchByApiName,searchByConsumer,searchByProducer}=this.props.api.searchByParams;
-        console.log(this.props.api.searchByParams);
-        filteredApis=this.apiList.filter( api =>{
+        const { searchByApiName,searchByConsumer,searchByProducer}=this.props.searchByParams;
+        
+        filteredApis=this.props.apiList.filter( api =>{
             return(api.apiName.toLowerCase().includes(searchByApiName.toLowerCase()) && api.consumer.toLowerCase().includes(searchByConsumer.toLowerCase()) && api.producer.toLowerCase().includes(searchByProducer.toLowerCase())
             );
         });
@@ -87,7 +84,11 @@ class SearchApi extends Component{
                     </form>
                     {
                         filteredApis.length ? filteredApis.map( ({id,...otherApiProps})=>
-                        <ApiItem key={id} id={id} {...otherApiProps}/>
+                        <ApiItem 
+                        key={id} 
+                        id={id} 
+                        viewPerfBtn={true}
+                        {...otherApiProps}/>
                         ) : <ApiNotFoundInstruction 
                                 consumer={searchByConsumer}
                                 producer={searchByProducer}
@@ -101,8 +102,8 @@ class SearchApi extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    api:state.api
-});
+    searchByParams:state.api.searchByParams
+})
 
 const mapDispatchToProps = (dispatch) => ({
     setSearchParams:(searchParams) => {
