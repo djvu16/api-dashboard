@@ -6,11 +6,9 @@ export const getAllApiDataList=async () =>{
         axios.get(
             `https://cryptic-hollows-56178.herokuapp.com/api`,
             {
-                token:localStorage.getItem("userAuthJwtToken")
-            },
-            {
-                header:{
-                    "Content-Type": "application/json"
+                headers:{
+                    "Content-Type": "application/json",
+                    "Authorization":`Bearer ${localStorage.getItem('userAuthJwtToken')}`
                 }
             }
         )

@@ -83,12 +83,13 @@ class SearchApi extends Component{
                             </div>
                     </form>
                     {
-                        filteredApis.length ? filteredApis.map( ({id,...otherApiProps})=>
+                        filteredApis.length ? filteredApis.map( ({_id,...otherApiProps})=>
                         <ApiItem 
-                        key={id} 
-                        id={id} 
-                        viewPerfBtn={true}
-                        {...otherApiProps}/>
+                            key={_id} 
+                            id={_id} 
+                            viewPerfBtn={true}
+                            {...otherApiProps}
+                        />
                         ) : <ApiNotFoundInstruction 
                                 consumer={searchByConsumer}
                                 producer={searchByProducer}

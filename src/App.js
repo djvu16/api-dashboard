@@ -17,15 +17,12 @@ function App(props) {
   const {currentUser,isAuthenticated} = props;
 
 
-  useEffect(()=>{
-
-  },[]);
 
   return (
     <div className="App">
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/" render={ () => (isAuthenticated ? <HomePage /> : (<Redirect to='/signin' />))}/>
         <Route exact path="/onboard" component={ApiDetailPage}/>
         <Route path="/search" component={SearchPage}/>
         <Route exact path="/signin" render={()=>(isAuthenticated ? (<Redirect to='/'/>):(<SigninSignupPage />))}/>

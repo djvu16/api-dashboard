@@ -27,7 +27,7 @@ const SearchPage = (props)=>{
     }
     const renderSearchApiData=(routeProps)=>{
         const apiId=routeProps.match.params.apiId;
-        const api=apiList.apiDtls.find(api=>api.id===+apiId);
+        const api=apiList.apiDtls.find(api=>api._id===apiId);
         return api ? <SearchApiCard api={api} /> : <ApiNotFoundInstruction id={apiId} />
     }
     return(

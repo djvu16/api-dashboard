@@ -24,7 +24,7 @@ const Header=(props)=>{
     return(
         <div className="header">
             <div className="options">
-                <Link className="option" to="/">Home</Link>
+                {/* <Link className="option" to="/">Home</Link> */}
                 {
                     isAuthenticated ?
                         <div>
