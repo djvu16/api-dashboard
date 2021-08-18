@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 //import styles for the page
@@ -26,13 +26,11 @@ const Header=(props)=>{
             <div className="options">
                 {/* <Link className="option" to="/">Home</Link> */}
                 {
-                    isAuthenticated ?
-                        <div>
+                    isAuthenticated &&
+                        <Fragment>
                         <CustomSpan value={currentUser}/>
-                        <Link className="option" to="/signin" onClick={logoutCurrentUser}>Signout</Link>
-                        </div>
-                        :
-                        <Link className="option" to="/signin">Login</Link>
+                        <Link className="option" to="/" onClick={logoutCurrentUser}>Signout</Link>
+                        </Fragment>
                 }
             </div>
         </div>

@@ -62,7 +62,7 @@ const Signin = (props) => {
                 currentUser:result.email,
                 isAuthenticated:result.isAuthenticated
             });
-            props.history.push("/");
+            props.history.push("/home");
         })
         .catch(err=>{
             alert(err);
