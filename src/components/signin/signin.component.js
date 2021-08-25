@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import InputField from '../input-field/input-field.component';
 import CustomSpan from '../custom-span/custom-span.component';
 import CustomButton from '../custom-button/custom-button.component';
+import Spinner from '../../components/spinner/spinner.component';
 import {userActionType} from '../../redux/actionType';
 
 //import validation api
@@ -102,20 +103,16 @@ const Signin = (props) => {
                         onClick={handleForgotPassClick}
                     />
                     <CustomButton 
-                        value="Reset"
                         type="button"
                         id="resetBtn"
                         name="resetBtn"
                         onClick={handleResetClick}
-                    />
-                    {!isLoading ? <CustomButton 
-                        value="Login"
+                    >Reset</CustomButton>
+                    <CustomButton 
                         type="submit"
                         id="submitBtn"
                         name="submitBtn"
-                    /> : <p>Signin...</p>
-                    }
-
+                    >{isLoading ? <Spinner /> : 'Login'}</CustomButton>
                 </div>
             </form>
                 <Link to="/signup">

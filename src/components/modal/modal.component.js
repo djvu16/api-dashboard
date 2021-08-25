@@ -1,78 +1,29 @@
-import React from 'react';
-
 //import components
-import CustomLabel from '../custom-label/custom-label.component';
-import CustomButton from '../custom-button/custom-button.component';
+
 
 //import styles
+import CustomButton from '../custom-button/custom-button.component';
 import './modal.styles.scss';
 
 
-const Modal =({api,showModal,setShowModal})=>{
-    const {id,apiName,apiCName,backendIP,port,backendEndPoint,urlReWritingWith,fullBackendUrl,gatewayUrl,consumer,producer,state,description,clientId,clientSecret,isActive,registeredBy} = api;
+const Modal = (props)=>{
+   const {title,message}=props;
 
-    const handleOkayClick = (event)=>{
-        event.preventDefault();
-        setShowModal(!showModal);
-    }
-    return(
-        <div className="modal">
-            <h2>{apiName}</h2>
-            <CustomLabel 
-                value={id}
-            />
-            <CustomLabel 
-                value={apiCName}
-            />
-            <CustomLabel 
-                value={backendIP}
-            />
-            <CustomLabel 
-                value={port}
-            />
-            <CustomLabel 
-                value={backendEndPoint}
-            />
-            <CustomLabel 
-                value={urlReWritingWith}
-            />
-            <CustomLabel 
-                value={fullBackendUrl}
-            />
-            <CustomLabel 
-                value={gatewayUrl}
-            />
-            <CustomLabel 
-                value={consumer}
-            />
-            <CustomLabel 
-                value={producer}
-            />
-            <CustomLabel 
-                value={state}
-            />
-            <CustomLabel 
-                value={description}
-            />
-            <CustomLabel 
-                value={clientId}
-            />
-            <CustomLabel 
-                value={clientSecret}
-            />
-            <CustomLabel 
-                value={isActive}
-            />
-            <CustomLabel 
-                value={registeredBy}
-            />
-            <CustomButton 
-                type="button"
-                value="Okayish"
-                onClick={handleOkayClick}
-            />
-        </div>
-    )
+   return <div className="modal">
+       <header>
+           <h3>{title}</h3>
+       </header>
+       <section>
+           <div className="content">
+                <p>{message}</p>
+           </div>
+       </section>
+       <footer>
+           <CustomButton> 
+           OK
+           </CustomButton>
+       </footer>
+   </div>
 }
 
 export default Modal;

@@ -13,7 +13,7 @@ const CustomButton = (props) =>{
         
         <div className="custom-btn">
             <button type={type} className="btn" onClick={onClick ? onClick : null} {...otherProps}>
-            {value}
+            {props.children}
             </button>
         </div>
     )

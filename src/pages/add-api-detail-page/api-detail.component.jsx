@@ -271,13 +271,11 @@ class ApiDetailPage extends Component{
                                 <CustomButton 
                                     className="btn"
                                     type="button"
-                                    value="Verify Details"
-                                />
+                                >Verify Details</CustomButton>
                                 <CustomButton 
                                     className="btn"
                                     type="submit"
-                                    value="Submit"
-                                />
+                                >Submit</CustomButton>
                             </div>
                         </div>
                 </form>

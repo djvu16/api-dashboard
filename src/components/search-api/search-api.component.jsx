@@ -77,9 +77,8 @@ class SearchApi extends Component{
                                 />
                                 <CustomButton 
                                     type='button'
-                                    value='Reset'
                                     onClick={this.handleResetBtnClick}
-                                />
+                                >Reset</CustomButton>
                             </div>
                     </form>
                     {
