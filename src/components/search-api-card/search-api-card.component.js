@@ -158,17 +158,13 @@ const SearchApiCard = (props) => {
                                 required />
                                 
                             <div className="btn-container">
-                                <CustomButton 
-                                    className="btn"
+                                <CustomButton
                                     type="button"
-                                    value="Modify Details"
-                                />
+                                >Modify Details</CustomButton>
                                 <CustomButton 
-                                    className="btn"
                                     type="submit"
-                                    value="Submit"
                                     disabled
-                                />
+                                >Submit</CustomButton>
                             </div>
                         </div>
         </div>
