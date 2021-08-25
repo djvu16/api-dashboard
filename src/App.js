@@ -13,9 +13,19 @@ import SearchPage from './pages/search-page/search-page.component';
 import Signup from './components/signup/signup.component';
 import Signin from './components/signin/signin.component';
 import CustomRoute from './components/custom-route/custom-route.component';
+import NoPageFound from './pages/no-page-found/no-page-found.component';
+import { userActionType } from './redux/actionType';
 
 function App(props) {
-  const {isAuthenticated} = props;
+  const {isAuthenticated,currentUser,userAuthJwtToken,setCurrentUser} = props;
+
+  if (localStorage.getItem('isAuthenticated')){
+    setCurrentUser({
+      currentUser:currentUser,
+      isAuthenticated:isAuthenticated,
+      userAuthJwtToken:userAuthJwtToken
+    });
+  }
   
   return (
     <div className="App">
@@ -26,6 +36,9 @@ function App(props) {
         <CustomRoute isAuthenticated={isAuthenticated} exact path="/home" component={HomePage}/>
         <CustomRoute isAuthenticated={isAuthenticated} exact path="/onboard" component={ApiDetailPage}/>
         <CustomRoute isAuthenticated={isAuthenticated} path="/search" component={SearchPage}/>
+        <Route path="*">
+          <NoPageFound />
+        </Route>
       </Switch>
     </div>
   );
@@ -33,7 +46,17 @@ function App(props) {
 
 const mapStateToProps = ( state ) => ({
   currentUser:state.user.currentUser,
-  isAuthenticated:state.user.isAuthenticated
+  isAuthenticated:state.user.isAuthenticated,
+  userAuthJwtToken:state.user.userAuthJwtToken
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser:(user) => {
+    dispatch({
+      type:userActionType.SET_CURRENT_USER,
+      payload:user
+    });
+  }
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

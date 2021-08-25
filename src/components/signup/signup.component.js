@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-
+import { useHistory } from "react-router-dom";
 
 //import Component
 import InputField from "../input-field/input-field.component";
@@ -10,6 +10,7 @@ import { userPostSignup } from '../../redux/action/user-action-api';
 //import styles
 import './signup.styles.scss';
 
+
 const Signup = (props) => {
     console.log(props);
     const [user,setUser]=useState({
@@ -17,7 +18,7 @@ const Signup = (props) => {
         password:'',
         confirmPass:''
     });
-
+    const history=useHistory();
     const {username,password,confirmPass} = user;
     
     const handleChange = event => {
@@ -37,7 +38,7 @@ const Signup = (props) => {
         .then(result=>{
             console.log(result);
             alert(result.message+" Redirecting to login page...");
-            return props.history.push('/signin');
+            return history.replace('/');
         })
         .catch(err => {
             console.log(err);

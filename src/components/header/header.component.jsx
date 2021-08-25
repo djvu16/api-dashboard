@@ -11,20 +11,22 @@ import CustomSpan from "../custom-span/custom-span.component";
 const Header=(props)=>{
     const {currentUser,isAuthenticated,setCurrentUser} = props
     
-    const logoutCurrentUser = (props) =>{
+    const logoutCurrentUser = () =>{
         const userToken=localStorage.getItem('userAuthJwtToken');
         if(userToken){
             localStorage.removeItem('userAuthJwtToken');
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('isAuthenticated');
             setCurrentUser({
-                currentUser:null,
-                isAuthenticated:false
+                currentUser:'',
+                isAuthenticated:false,
+                userAuthJwtToken:''
             });
         }
     }
     return(
         <div className="header">
             <div className="options">
-                {/* <Link className="option" to="/">Home</Link> */}
                 {
                     isAuthenticated &&
                         <Fragment>

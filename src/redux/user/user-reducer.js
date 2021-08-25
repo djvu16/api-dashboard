@@ -1,8 +1,9 @@
 const { userActionType } = require("../actionType");
 
 const INITIAL_STATE={
-    currentUser:null,
-    isAuthenticated:false
+    currentUser:localStorage.getItem('currentUser'),
+    isAuthenticated:localStorage.getItem('isAuthenticated'),
+    userAuthJwtToken:localStorage.getItem('userAuthJwtToken')
 }
 
 const userReducer=(state=INITIAL_STATE,action)=>{ 
@@ -11,7 +12,8 @@ const userReducer=(state=INITIAL_STATE,action)=>{
             return{
                 ...state,
                 currentUser:action.payload.currentUser,
-                isAuthenticated:action.payload.isAuthenticated
+                isAuthenticated:action.payload.isAuthenticated,
+                userAuthJwtToken:action.payload.userAuthJwtToken
             }
         default:
             return state;

@@ -11,6 +11,8 @@ export const signinValidation =async (data) => {
             const {status,data} = response;
             if(status===200){
                 localStorage.setItem("userAuthJwtToken",data.token);
+                localStorage.setItem("currentUser",data.email);
+                localStorage.setItem("isAuthenticated",data.isAuthenticated);
                 resolve(data);
             }
         }).catch(err=>{

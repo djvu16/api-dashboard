@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState} from 'react';
+import {Link,useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 //import components
@@ -18,11 +18,9 @@ const Signin = (props) => {
     const [userName,setUserName]=useState('');
     const [password,setPassword]=useState('');
     const {setCurrentUser}=props;
+    const [isLoading,setIsLoading]=useState(false);
+    const history=useHistory();
 
-
-    useEffect(()=>{
-        
-    },[]);
     const handleForgotPassClick = () => {
 
     }
@@ -39,6 +37,7 @@ const Signin = (props) => {
         if(name==="password")
             setPassword(value);
     }
+
     const handleSubmit=(event) => {
         event.preventDefault();
         if(userName==='' || userName===null){
@@ -51,6 +50,7 @@ const Signin = (props) => {
             setPassword('');
             return;
         }
+        setIsLoading(true);
         const user={
             email:userName,
             password:password
@@ -58,13 +58,16 @@ const Signin = (props) => {
        //user authentication being done here
         signinValidation(user)
         .then(result=>{
+            setIsLoading(false);
             setCurrentUser({
                 currentUser:result.email,
-                isAuthenticated:result.isAuthenticated
+                isAuthenticated:result.isAuthenticated,
+                userAuthJwtToken:result.token
             });
-            props.history.push("/home");
+            history.replace("/home");
         })
         .catch(err=>{
+            setIsLoading(false);
             alert(err);
         });
         
@@ -105,12 +108,14 @@ const Signin = (props) => {
                         name="resetBtn"
                         onClick={handleResetClick}
                     />
-                    <CustomButton 
+                    {!isLoading ? <CustomButton 
                         value="Login"
                         type="submit"
                         id="submitBtn"
                         name="submitBtn"
-                    />
+                    /> : <p>Signin...</p>
+                    }
+
                 </div>
             </form>
                 <Link to="/signup">
